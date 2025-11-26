@@ -27,19 +27,21 @@
 
 ### 1. Клонируй репозиторий
 ```bash
-git clone https://github.com/yourname/ai-scrum-master.git
+git clone https://github.com/danniyeres/ai-scrum-master.git
 cd ai-scrum-master
 ```
 
-
+```bash
 ./mvnw spring-boot:run
+```
 # или через Docker
+```bash
 docker-compose up --build
-
+```
 
 ## API
 
-Базовый URL: `http://localhost:8080`  
+### Базовый URL: `http://localhost:8080`  
 Заголовки по умолчанию:
 - `Content-Type: application/json`
 - `Accept: application/json`
