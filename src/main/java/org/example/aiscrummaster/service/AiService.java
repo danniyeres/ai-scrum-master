@@ -23,6 +23,8 @@ public class AiService {
     private String URL;
     @Value("${openrouter.api-key}")
     private String API_KEY;
+    @Value("${openrouter.model:x-ai/grok-4.1-fast}")
+    private String MODEL;
 
     public AiService(TeamService teamService) {
         this.teamService = teamService;
@@ -92,7 +94,7 @@ public class AiService {
 
 
         Map<String, Object> body = Map.of(
-                "model", "x-ai/grok-4.1-fast",
+                "model",MODEL,
                 "messages", List.of(
                         Map.of("role", "system", "content",
                                 "Ты — Senior Scrum Master. Отвечай строго JSON."),
