@@ -3,9 +3,7 @@ package org.example.aiscrummaster.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.aiscrummaster.dto.TeamDto;
 import org.example.aiscrummaster.dto.TeamMemberDto;
-import org.example.aiscrummaster.model.Team;
 import org.example.aiscrummaster.model.TeamMember;
-import org.example.aiscrummaster.repository.TeamRepository;
 import org.example.aiscrummaster.service.TeamService;
 import org.springframework.web.bind.annotation.*;
 

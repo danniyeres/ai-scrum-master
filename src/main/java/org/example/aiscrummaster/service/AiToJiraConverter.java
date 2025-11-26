@@ -25,7 +25,7 @@ public class AiToJiraConverter {
 
         // 1. Epic
         if (dto.getEpic() != null) {
-            Map<String, Object> fields = new HashMap<>(); // ← HashMap, а не Map.of!
+            Map<String, Object> fields = new HashMap<>();
             fields.put("project", Map.of("key", projectKey));
             fields.put("summary", dto.getEpic().getSummary());
             fields.put("description", toAdf(dto.getEpic().getDescription()));
@@ -48,7 +48,7 @@ public class AiToJiraConverter {
                 storyFields.put("summary", story.getSummary());
                 storyFields.put("description", toAdf(story.getDescription()));
                 storyFields.put("issuetype", Map.of("name", "Story"));
-                storyFields.put("parent", Map.of("key", epicKeyPlaceholder)); // потом заменим
+                storyFields.put("parent", Map.of("key", epicKeyPlaceholder));
 
                 if (story.getStoryPoints() > 0) {
                     storyFields.put(storyPointsField, story.getStoryPoints());
@@ -73,7 +73,7 @@ public class AiToJiraConverter {
                         subFields.put("summary", sub.getSummary());
                         subFields.put("description", toAdf(""));
                         subFields.put("issuetype", Map.of("name", "Sub-task"));
-                        subFields.put("parent", Map.of("key", "STORY_" + story.getSummary().hashCode())); // временный
+                        subFields.put("parent", Map.of("key", "STORY_" + story.getSummary().hashCode()));
 
                         if (story.getAssignee() != null) {
                             subFields.put("assignee", Map.of("tempEmail", story.getAssignee()));
@@ -89,7 +89,7 @@ public class AiToJiraConverter {
 
     private Map<String, Object> toAdf(String text) {
         String content = text == null || text.isBlank() ? "Создано AI Scrum Master" : text;
-        return new HashMap<>(Map.of( // ← тоже HashMap!
+        return new HashMap<>(Map.of(
                 "type", "doc",
                 "version", 1,
                 "content", List.of(Map.of(
