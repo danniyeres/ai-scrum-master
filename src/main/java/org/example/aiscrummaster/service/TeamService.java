@@ -19,24 +19,14 @@ public class TeamService {
     private final TeamMemberRepository teamMemberRepository;
 
 
-    public TeamDto createTeam(TeamDto teamDto) {
-        Team team = Team.builder()
-                .name(teamDto.getName())
-                .build();
-
-        teamRepository.save(team);
-
-        return TeamDto.builder()
-                .id(team.getId())
-                .name(team.getName())
-                .teamMembers(team.getTeamMembers())
-                .build();
-    }
 
     public TeamDto createTeamWithMembers(String teamName, List<TeamMember> members) {
         Team team = new Team();
         team.setName(teamName);
 
+        if (members == null) {
+            members = List.of();
+        }
         for (TeamMember member : members) {
             member.setTeam(team);
         }

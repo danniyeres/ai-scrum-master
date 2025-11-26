@@ -17,10 +17,6 @@ import java.util.List;
 public class TeamController {
     private final TeamService teamService;
 
-    @PostMapping("/create")
-    public TeamDto createTeam(@RequestBody TeamDto team) {
-        return teamService.createTeam(team);
-    }
 
     @PostMapping
     public TeamDto createTeamWithMembers(@RequestBody TeamDto teamDto) {
@@ -38,7 +34,7 @@ public class TeamController {
         return teamService.addMemberToTeam(teamId, newMember);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/members")
     public void removeMemberFromTeam(@RequestParam Long memberId) {
         teamService.removeMemberFromTeam(memberId);
     }
