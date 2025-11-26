@@ -3,7 +3,6 @@
 [![Java 17](https://img.shields.io/badge/Java-17-brightgreen)](https://openjdk.org/)
 [![Spring Boot 3](https://img.shields.io/badge/Spring%20Boot-3.2-blue)](https://spring.io/projects/spring-boot)
 [![Grok-4.1](https://img.shields.io/badge/AI-Grok%204.1-ff6600)](https://x.ai)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **AI Scrum Master** — это инструмент, который превращает техническое задание в полностью готовый спринт в Jira:
 - Epic → Stories → Sub-tasks
@@ -34,10 +33,7 @@ cd ai-scrum-master
 ```bash
 ./mvnw spring-boot:run
 ```
-# или через Docker
-```bash
-docker-compose up --build
-```
+
 
 ## API
 

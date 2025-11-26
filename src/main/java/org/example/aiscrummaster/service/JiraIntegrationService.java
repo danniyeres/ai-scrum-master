@@ -43,7 +43,7 @@ public class JiraIntegrationService {
         headers.set("Authorization", "Basic " + Base64.getEncoder()
                 .encodeToString((jiraEmail + ":" + jiraToken).getBytes()));
 
-        // 1. Создаём Epic (если есть)
+        // 1. Создаём Epic
         if (aiResponse.getEpic() != null && aiResponse.getEpic().getSummary() != null) {
             Map<String, Object> fields = new HashMap<>();
             fields.put("project", Map.of("key", projectKey));
@@ -56,7 +56,6 @@ public class JiraIntegrationService {
             log.info("Epic создан: {}", epicKey);
         }
 
-        // Если эпика нет — выходим
         if (epicKey == null) {
             throw new IllegalStateException("Не удалось создать Epic — проверь ТЗ и права");
         }
@@ -72,7 +71,6 @@ public class JiraIntegrationService {
                 fields.put("description", toAdf(story.getDescription()));
                 fields.put("issuetype", Map.of("name", "Story"));
 
-                // Привязка к эпику — БЕЗОПАСНО!
                 fields.put("parent", Map.of("key", epicKey));
 
                 // Story Points — только если > 0
@@ -104,7 +102,6 @@ public class JiraIntegrationService {
                         subFields.put("issuetype", Map.of("name", "Sub-task"));
                         subFields.put("parent", Map.of("key", storyKey)); // ← привязка к Story
 
-                        // Наследуем assignee
                         if (story.getAssignee() != null) {
                             String accountId = getAccountIdByEmail(story.getAssignee());
                             if (accountId != null) {
